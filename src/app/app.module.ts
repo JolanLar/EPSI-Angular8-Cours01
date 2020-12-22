@@ -8,6 +8,8 @@ import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ApiInterceptor} from './core/api.interceptor';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {ApiInterceptor} from './core/api.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [
     {
