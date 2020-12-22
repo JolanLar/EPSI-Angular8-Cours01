@@ -4,27 +4,29 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNameComponent } from './my-name/my-name.component';
-import { MyFirstStageComponent } from './my-first-stage/my-first-stage.component';
-import { MySecondStageComponent } from './my-second-stage/my-second-stage.component';
-import { MySecondPageOneComponent } from './my-second-page-one/my-second-page-one.component';
-import { MySecondPageTwoComponent } from './my-second-page-two/my-second-page-two.component';
+import {AuthModule} from './auth/auth.module';
+import {CoreModule} from './core/core.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {ApiInterceptor} from './core/api.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyNameComponent,
-    MyFirstStageComponent,
-    MySecondStageComponent,
-    MySecondPageOneComponent,
-    MySecondPageTwoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AuthModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
