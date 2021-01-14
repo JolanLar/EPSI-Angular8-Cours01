@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signin',
@@ -10,11 +11,11 @@ import {Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -45,13 +46,16 @@ export class SigninComponent implements OnInit {
       this.emailControl.value,
       this.passwordControl.value
     ).subscribe(
-      (result) => {
+      () => {
         // connexion est réussie !
         this.router.navigate(['dash/home']);
       },
       (err) => {
         // on peut dire à l'utilisateur qu'il n'a pas donné les bons identifiants
         console.log({ err });
+        this.snackBar.open('Mauvais identifiants', 'OK!', {
+          duration: 2000,
+        });
       });
   }
 

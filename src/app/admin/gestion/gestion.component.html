@@ -1,0 +1,15 @@
+<h1>
+  Page de gestion
+</h1>
+
+<p>
+  Bienvenue {{user.first_name}} {{user.last_name}}
+</p>
+
+<div class="match-container">
+  <mat-card *ngFor="let tag of $tags | async">
+    <mat-card-header>
+      <mat-card-title>{{tag.name}}</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>

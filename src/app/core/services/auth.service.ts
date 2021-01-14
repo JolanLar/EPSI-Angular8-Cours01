@@ -16,11 +16,15 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private sessionService: SessionService
+    private sessionService: SessionService,
   ) { }
 
   static get isSignedIn(): boolean {
     return AuthService.user !== null;
+  }
+
+  static get isAdmin(): boolean {
+    return AuthService.user.roles.includes('ROLE_ADMIN');
   }
 
   signin(email: string, password: string): Observable<any> {
