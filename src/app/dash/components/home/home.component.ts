@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/core/entities/user';
+import {User} from '../../../core/entities/user';
 import {AuthService} from '../../../core/services/auth.service';
+import {Observable} from 'rxjs';
+import {MatchService} from '../../../core/services/match.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,18 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  matchs$: Observable<User[]>;
+  matchs: User[] = [];
+
+  constructor(
+    private matchService: MatchService
+  ) {
+    this.matchs$ = matchService.get();
+    this.matchs$.subscribe((userMatchs) => {
+      console.log({ userMatchs });
+      this.matchs = userMatchs;
+    });
+  }
 
   ngOnInit() {
   }
@@ -17,5 +30,8 @@ export class HomeComponent implements OnInit {
   get user(): User {
     return AuthService.user;
   }
+
+
+
 
 }

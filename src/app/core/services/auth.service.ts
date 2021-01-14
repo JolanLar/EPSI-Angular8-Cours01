@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {User} from '../entities/user';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+import { User } from '../entities/user';
+import { environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {SessionService} from './session.service';
 
@@ -15,16 +16,20 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private sessionService: SessionService,
+    private sessionService: SessionService
   ) { }
+
+  static get isSignedIn(): boolean {
+    return AuthService.user !== null;
+  }
 
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
       `${environment.api}/api/login_check`,
-      { email, password}
-    ).pipe(
-      tap((response) => {
-        console.log('pipe value', response.token);
+      {email, password}
+      ).pipe(
+      tap(response => {
+        console.log('token', response.token);
         this.sessionService.setToken(response.token);
       })
     );
@@ -47,5 +52,7 @@ export class AuthService {
       }),
     );
   }
+
+
 
 }
