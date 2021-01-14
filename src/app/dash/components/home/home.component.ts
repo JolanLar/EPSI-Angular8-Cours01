@@ -12,16 +12,11 @@ import {MatchService} from '../../../core/services/match.service';
 export class HomeComponent implements OnInit {
 
   matchs$: Observable<User[]>;
-  matchs: User[] = [];
 
   constructor(
     private matchService: MatchService
   ) {
     this.matchs$ = matchService.get();
-    this.matchs$.subscribe((userMatchs) => {
-      console.log({ userMatchs });
-      this.matchs = userMatchs;
-    });
   }
 
   ngOnInit() {
