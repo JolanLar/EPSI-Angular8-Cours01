@@ -33,7 +33,7 @@ export class GestionComponent implements OnInit {
   }
 
   reloadTags() {
-    this.tagService.getAll().toPromise().then((tags) => {
+    this.tagService.getAll().subscribe((tags) => {
       this.$tags = new MatTableDataSource<Tag>(tags);
       this.$tags.paginator = this.paginator;
       this.$tags.filterPredicate = (data: Tag, filter: string) => {
