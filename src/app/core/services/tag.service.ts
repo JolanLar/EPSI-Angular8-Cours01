@@ -24,4 +24,16 @@ export class TagService {
     );
   }
 
+  delete(id: string): Observable<any> {
+    return this.httpClient.delete(
+      `${environment.api}/api/admin/tag/${id}`
+    );
+  }
+
+  create(name: string): Observable<any> {
+    return this.httpClient.post(
+      `${environment.api}/api/admin/tag`,
+      {name}
+    );
+  }
 }

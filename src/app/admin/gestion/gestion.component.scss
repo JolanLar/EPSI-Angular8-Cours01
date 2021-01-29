@@ -16,3 +16,26 @@ p {
     margin: 20px;
   }
 }
+
+table {
+  width: 40%;
+}
+
+.mat-elevation-z8 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mat-elevation-z8 * {
+  text-align: center;
+}
+
+span {
+  color: red;
+  cursor: pointer;
+}
+
+button {
+  margin: 15px;
+}
