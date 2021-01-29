@@ -1,3 +1,7 @@
+# StackBlitz
+Problem : Pagination for tags administration don't work with stackblitz but correctly work locally
+https://stackblitz.com/github/JolanLar/EPSI-Angular8-Cours01
+
 # AngularEpsi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.15.
